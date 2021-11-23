@@ -1,6 +1,6 @@
 ---
 id: 5
-urlTitle: "unbox-re0-emilia-Ram-icash"
+urlTitle: "unbox-re0-emilia-ram-icash"
 title: "【開箱】Re:從零開始的異世界生活 悠閒時光/紫幻光影 icash2.0 2018/08"
 cid: 1
 publishDate: "2018-08-08 00:00:00"
