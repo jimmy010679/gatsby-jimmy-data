@@ -103,8 +103,7 @@ pip install jupyter
 
 ### 2.2 資料載入
 
-接著在 juypyter localhost 網頁的右上角 “New” 按鈕，新增新的 “Python3” Notebook
-
+接著在 juypyter localhost 網頁的右上角 “New” 按鈕，新增新的 “Python3” Notebook  
 先把所有有用到的套件引入進來
 
 ```python{numberLines: true}
@@ -137,7 +136,7 @@ train["Age"] = train["Age"].fillna(train["Age"].median())
 test["Age"] = test["Age"].fillna(test["Age"].median())
 ```
 
-2.4 Sex 性別
+### 2.4 Sex 性別
 
 male 男性轉為 0  
 female 女性轉為 1
@@ -149,7 +148,7 @@ test.loc[test["Sex"] == "male", "Sex"] = 0
 test.loc[test["Sex"] == "female", "Sex"] = 1
 ```
 
-2.5 Fare 船票價格
+### 2.5 Fare 船票價格
 
 使用中位數來填補缺失值
 
@@ -158,7 +157,7 @@ train["Fare"] = train["Fare"].fillna(train['Fare'].median())
 test["Fare"] = test["Fare"].fillna(test['Fare'].median())
 ```
 
-2.6 Embarked 登入港口
+### 2.6 Embarked 登入港口
 
 將缺失欄位都設為 S 港口
 
