@@ -22,23 +22,18 @@ published: true
 description: ""
 ---
 
-自己筆記紀錄一下…
+## 背景
 
-本篇用實務範例帶大家如何操作及學習，針對第一次想學機器學習的人，適合稍微有一點點程式基礎的人閱讀
-
+自己筆記紀錄一下…  
+本篇用實務範例帶大家如何操作及學習，針對第一次想學機器學習的人，適合稍微有一點點程式基礎的人閱讀  
 我的開發環境為 Python 3.7 + 虛擬環境 venv
 
-<br/>
+## 一、環境建置
 
-<br/>
-
-# 一、環境建置
-
-安裝完 Python 之後
-
+安裝完 Python 之後  
 先從環境建置開始教起
 
-## 1.1 創建虛擬環境
+### 1.1 創建虛擬環境
 
 創建名為 t_venv 的虛擬環境
 
@@ -46,9 +41,7 @@ description: ""
 python -m venv t_venv
 ```
 
-<br/>
-
-## 1.2 切換虛擬環境
+### 1.2 切換虛擬環境
 
 切換到虛擬環境
 
@@ -58,12 +51,9 @@ t_venv\Scripts\activate
 
 切換成功會在前面顯示(t_venv)，例如：(t_venv) D:\python\t_venv
 
-<br/>
+### 1.3 安裝套件
 
-## 1.3 安裝套件
-
-再來是安裝所需的套件
-
+再來是安裝所需的套件  
 在安裝之前記得把 pip 升級一下
 
 ```python{numberLines: true}
@@ -73,49 +63,29 @@ pip install -U scikit-learn
 pip install jupyter
 ```
 
-套件說明：
+**套件說明：**
 
-pandas：幫我們做資料預處理
+- pandas：幫我們做資料預處理
+- scikit-learn：機器學習套件
+- Jupyter：提供 Web 介面，可以在瀏覽器直接撰寫程式，方便我們分析資料 (選用)
 
-scikit-learn：機器學習套件
+### 1.4 開啟 Jupyter
 
-Jupyter：提供 Web 介面，可以在瀏覽器直接撰寫程式，方便我們分析資料 (選用)
-
-<br/>
-
-## 1.4 開啟 Jupyter
-
-jupyter notebook
+`jupyter notebook`  
 運行成功後會自動開啟 localhost 網頁
 
-<br/>
+## 二、資料預處理/資料分析
 
-<br/>
+### 2.1 下載資料
 
-# 二、資料預處理/資料分析
+下載所需的鐵達尼號資料，我們可以到 Kaggle 這網站，我們這次練習主題是[鐵達尼號](https://www.kaggle.com/c/titanic/data)，先把下面兩個 CSV 檔載下來
 
-## 2.1 下載資料
+- train.csv (訓練集)
+- test.csv (測試集)
 
-下載所需的鐵達尼號資料
-
-我們可以到 Kaggle 這網站，我們這次練習主題是鐵達尼號
-
-https://www.kaggle.com/c/titanic/data
-
-先把下面兩個 CSV 檔載下來
-
-train.csv (訓練集)
-
-test.csv (測試集)
-
-放到我們的開發目錄
-
-例如筆者的目錄位置在 D:\python\t_venv
-
-就放到這個資料夾裡
-
-<br/>
-
+放到我們的開發目錄  
+例如筆者的目錄位置在 D:\python\t_venv  
+就放到這個資料夾裡  
 我們用 EXCEL 打開 CSV 檔，分別有以下這些欄位：
 
 - PassengerId 乘客編號
@@ -131,9 +101,7 @@ test.csv (測試集)
 - Cabin 船艙
 - Embarked 登入港口
 
-<br/>
-
-## 2.2 資料載入
+### 2.2 資料載入
 
 接著在 juypyter localhost 網頁的右上角 “New” 按鈕，新增新的 “Python3” Notebook
 
@@ -142,16 +110,14 @@ test.csv (測試集)
 ```python{numberLines: true}
 import pandas as pd
 import numpy as np
-from sklearn.ensemble import RandomForestClassifier # 隨機森林
+from sklearn.ensemble import RandomForestClassifier ## 隨機森林
 train = pd.read_csv("train.csv")
 test = pd.read_csv("test.csv")
 ```
 
 這次教學是使用隨機森林
 
-<br/>
-
-## 2.3 基本欄位查看
+### 2.3 基本欄位查看
 
 使用 info()，可以看到有許多欄位有缺失值
 
@@ -162,9 +128,7 @@ test.info()
 
 我們看到 Age、Cabin、Embarked、Fare，這些欄位都有缺失值
 
-<br/>
-
-## 2.3 Age 年齡
+### 2.3 Age 年齡
 
 使用中位數來填補缺失值
 
@@ -173,11 +137,9 @@ train["Age"] = train["Age"].fillna(train["Age"].median())
 test["Age"] = test["Age"].fillna(test["Age"].median())
 ```
 
-<br/>
-
 2.4 Sex 性別
 
-male 男性轉為 0
+male 男性轉為 0  
 female 女性轉為 1
 
 ```python{numberLines: true}
@@ -187,8 +149,6 @@ test.loc[test["Sex"] == "male", "Sex"] = 0
 test.loc[test["Sex"] == "female", "Sex"] = 1
 ```
 
-<br/>
-
 2.5 Fare 船票價格
 
 使用中位數來填補缺失值
@@ -197,8 +157,6 @@ test.loc[test["Sex"] == "female", "Sex"] = 1
 train["Fare"] = train["Fare"].fillna(train['Fare'].median())
 test["Fare"] = test["Fare"].fillna(test['Fare'].median())
 ```
-
-<br/>
 
 2.6 Embarked 登入港口
 
@@ -215,13 +173,9 @@ test.loc[test["Embarked"] == "C", "Embarked"] = 1
 test.loc[test["Embarked"] == "Q", "Embarked"] = 2
 ```
 
-<br/>
+## 三、預測結果
 
-<br/>
-
-# 三、預測結果
-
-## 3.1 訓練集分數
+### 3.1 訓練集分數
 
 預測特徵宣告
 
@@ -239,12 +193,9 @@ print(RFC.oob_score*)
 
 得到 oob score 為 0.8271604938271605，看似不錯呢…
 
-<br/>
+### 3.2 Kaggle 分數
 
-## 3.2 Kaggle 分數
-
-我們將測試集的結果保存到 submission.csv
-
+我們將測試集的結果保存到 submission.csv  
 然後將這 CSV 檔案上傳到 Kaggle
 
 ```python{numberLines: true}
@@ -255,29 +206,20 @@ submission = pd.DataFrame({
 })
 ```
 
-submission.to_csv('submission.csv', index=False)
+submission.to_csv('submission.csv', index=False)  
 最後在 Kaggle 得到的分數為 0.76555 ( 落在 Top 68%左右)
 
-這結果也不意外，我們只做簡單的處理而已…
-
-要提升準確度，勢必要在特徵欄位多做一些處理
-
+這結果也不意外，我們只做簡單的處理而已…  
+要提升準確度，勢必要在特徵欄位多做一些處理  
 (待補程式執行圖)
 
-<br/>
+**後記：**
 
-後記：
-
-這些都只是實務操作應用而已，真正難的是背後理論基礎…
-
-像是為什麼要這麼做等等…
-
+這些都只是實務操作應用而已，真正難的是背後理論基礎…  
+像是為什麼要這麼做等等…  
 希望大家看完本篇內容都能有點收穫！
 
-<br/>
+**未完待續：**
 
-未完待續：
-
-建立好模型之後，我們當然能希望能夠實際上有所應用…
-
+建立好模型之後，我們當然能希望能夠實際上有所應用…  
 下一篇預告(六月左右更新)：為模型建立 WEB API (以鐵達尼號為範例)

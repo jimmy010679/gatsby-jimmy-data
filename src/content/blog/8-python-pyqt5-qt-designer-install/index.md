@@ -17,9 +17,7 @@ description: ""
 
 開發環境 Windows Python 3.7 64 位元
 
-<br/>
-
-# 一、使用 pip 安裝 Pyqt5
+## 一、使用 pip 安裝 Pyqt5
 
 在 cmd 輸入：
 
@@ -37,9 +35,7 @@ pip install pyqt5
 
 ![套件](./images/2.jpg)
 
-<br/>
-
-# 二、安裝 pyqt5-tools
+## 二、安裝 pyqt5-tools
 
 但我發現使用 pip 安裝 PyQt5 時，是沒有 Qt designer 開發環境
 
@@ -65,9 +61,7 @@ qt designer 執行畫面
 
 ![qt designer](./images/4.jpg)
 
-<br/>
-
-# 三、範例程式
+## 三、範例程式
 
 ```python{numberLines: true}
 import sys
